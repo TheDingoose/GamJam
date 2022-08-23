@@ -7,7 +7,7 @@ public class MouseInputScript : MonoBehaviour
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             GameObject obj = GetObjectUnderMouse();
-            obj.GetComponent<Clickable>().Click();
+            if (obj != null) obj.GetComponent<Clickable>().Click();
         }
     }
 
