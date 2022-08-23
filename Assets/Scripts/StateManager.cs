@@ -7,7 +7,6 @@ public class Interactable {
     public string name;
     public GameObject obj;
     public string[] states;
-    [SerializeField] string startState;
 
     int currentStateIndex;
 
@@ -23,10 +22,6 @@ public class Interactable {
             }   
             i++;
         }
-    }
-
-    public Interactable() {
-        SetCurrentState(startState);
     }
 }
 
