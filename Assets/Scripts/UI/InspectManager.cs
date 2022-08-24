@@ -9,6 +9,10 @@ public class InspectManager : MonoBehaviour
     public Image inspectObject;
     public GameObject closeButton;
 
+    void Start() {
+        ToggleInspection(false, false);
+    }
+
     public void HideInspect() {
         ToggleInspection(false);
     }

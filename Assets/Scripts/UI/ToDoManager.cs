@@ -24,9 +24,9 @@ public class ToDoManager : MonoBehaviour
             if (item.ID == ID) {
                 item.done = true;
                 if (!item.hidden) {
-                    item.textMeshObj.GetComponent<TextMeshProUGUI>().text = "<s>" + item.itemDescription + "</s>";
+                    item.textMeshObj.GetComponent<TextMeshPro>().text = "<s>" + item.itemDescription + "</s>";
                 } else {
-                    emptySlots[0].GetComponent<TextMeshProUGUI>().text = "<s>" + item.itemDescription + "</s>";
+                    emptySlots[0].GetComponent<TextMeshPro>().text = "<s>" + item.itemDescription + "</s>";
                     emptySlots.Remove(emptySlots[0]);
                 }
             }
