@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
         if (pos.x - startPos.x > 0) transform.localScale = new Vector3(-1, 1, 1);
 
         Animator animator = GetComponent<Animator>();
-        animator.SetInteger("AnimationState", 1);
+       // animator.SetBool("AnimationState", 1);
 
         float timeElapsed = 0;
         while (timeElapsed < actualSpeed) {
@@ -24,7 +24,8 @@ public class PlayerMove : MonoBehaviour
             yield return null;
         }
 
-        animator.SetInteger("AnimationState", 0);
+       // animator.SetInteger("AnimationState", 0);
         transform.localScale = new Vector3(1, 1, 1);
+        animator.SetTrigger("Interact");
     }
 }

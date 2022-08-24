@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
+[System.Serializable]
 public class Cup : MonoBehaviour, Clickable
 {
     public bool walkToObj {get; set;} = true;
     public GameObject TestAnimation;
+    public bool walkToObj { get; set; } = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,23 +29,23 @@ public class Cup : MonoBehaviour, Clickable
 
     IEnumerator Fall()
     {
-        this.GetComponent<SplineAnimate>().Play();
+        GetComponent<AnimationManager>().Play(0);
         yield return new WaitForSeconds(this.GetComponent<SplineAnimate>().duration);
         GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("CupFall");
         yield return new WaitForSeconds(1);
         GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("DoorOpen");
+        
         TestAnimation.SetActive(true);
-        yield return new WaitForSeconds(
-            TestAnimation.GetComponent<AnimationSequence>().Sequence[0].Duration +
-            TestAnimation.GetComponent<AnimationSequence>().Sequence[1].Duration);
+        TestAnimation.GetComponent<AnimationManager>().Play(0);
+        yield return new WaitForSeconds(TestAnimation.GetComponent<AnimationManager>().GetDurationFromTo(0, 0, 1));
 
         this.transform.position = new Vector3(-0.536f, -0.396f, 0);
         this.transform.rotation = Quaternion.identity;
 
-        yield return new WaitForSeconds(
-    TestAnimation.GetComponent<AnimationSequence>().Sequence[2].Duration +
-    TestAnimation.GetComponent<AnimationSequence>().Sequence[3].Duration);
+        yield return new WaitForSeconds(TestAnimation.GetComponent<AnimationManager>().GetDurationFromTo(0, 2, 3));
         GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("DoorClose");
         TestAnimation.SetActive(false);
+        StopCoroutine(Fall());
+
     }
 }

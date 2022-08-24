@@ -8,7 +8,7 @@ public class Inspectable : MonoBehaviour, Clickable
     [SerializeField]Sprite inspectSprite;
 
     InspectManager inspectManager;
-
+    public bool walkToObj { get; set; } = false;
     void Start() {
         inspectManager = FindObjectOfType<InspectManager>();
     }
