@@ -185,7 +185,7 @@ public class AnimationSequence : MonoBehaviour
                     default:
                         break;
                 }
-                switch (Sequence[CurrentStep].objectUpAxis)
+                switch (Sequence[CurrentStep].objectForwardAxis)
                 {
                     case SplineAlignAxisSetting.PosX:
                         SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.XAxis;
