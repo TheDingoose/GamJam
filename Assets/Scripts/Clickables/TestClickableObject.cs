@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestClickableObject : MonoBehaviour, Clickable
 {
+    public bool walkToObj {get; set;}  = true;
+
     public void Click() {
         StateManager stateManager = FindObjectOfType<StateManager>(); 
         Debug.Log(stateManager.GetInteractableByObj(this.gameObject).GetCurrentState());

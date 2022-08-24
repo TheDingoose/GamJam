@@ -14,8 +14,12 @@ public class MouseInputScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             GameObject obj = GetObjectUnderMouse();
             if (obj != null && obj.GetComponent<Clickable>() != null) {
-                Task t = new Task(playerMove.MoveTo(obj.transform.position));
-                t.Finished += delegate { obj.GetComponent<Clickable>().Click();};
+                if (obj.GetComponent<Clickable>().walkToObj) {
+                    Task t = new Task(playerMove.MoveTo(obj.transform.position));
+                    t.Finished += delegate { obj.GetComponent<Clickable>().Click();};
+                } else {
+                    obj.GetComponent<Clickable>().Click();
+                }
             }
         }
     }

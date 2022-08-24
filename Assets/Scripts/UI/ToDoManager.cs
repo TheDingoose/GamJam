@@ -16,6 +16,7 @@ public class ToDoItem {
 
 public class ToDoManager : MonoBehaviour, Clickable
 {
+    public bool walkToObj {get; set;} = false;
     public bool extended = true;
     public float extendedY;
     public float hiddenY;

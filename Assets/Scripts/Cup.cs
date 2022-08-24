@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 
 public class Cup : MonoBehaviour, Clickable
 {
+    public bool walkToObj {get; set;} = true;
     public GameObject TestAnimation;
 
     // Start is called before the first frame update

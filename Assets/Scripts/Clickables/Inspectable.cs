@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Inspectable : MonoBehaviour, Clickable
 {
+    public bool walkToObj {get; set;}  = true;
     [SerializeField]Sprite inspectSprite;
 
     InspectManager inspectManager;
