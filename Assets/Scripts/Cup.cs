@@ -27,7 +27,10 @@ public class Cup : MonoBehaviour, Clickable
     IEnumerator Fall()
     {
         this.GetComponent<SplineAnimate>().Play();
-        yield return new WaitForSeconds(this.GetComponent<SplineAnimate>().duration + 1);
+        yield return new WaitForSeconds(this.GetComponent<SplineAnimate>().duration);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("CupFall");
+        yield return new WaitForSeconds(1);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("DoorOpen");
         TestAnimation.SetActive(true);
         yield return new WaitForSeconds(
             TestAnimation.GetComponent<AnimationSequence>().Sequence[0].Duration +
@@ -39,6 +42,7 @@ public class Cup : MonoBehaviour, Clickable
         yield return new WaitForSeconds(
     TestAnimation.GetComponent<AnimationSequence>().Sequence[2].Duration +
     TestAnimation.GetComponent<AnimationSequence>().Sequence[3].Duration);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().PlaySound("DoorClose");
         TestAnimation.SetActive(false);
     }
 }
