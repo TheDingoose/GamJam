@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MouseInputScript : MonoBehaviour
 {
-
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             GameObject obj = GetObjectUnderMouse();
