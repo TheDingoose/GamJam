@@ -10,27 +10,33 @@ public enum AnimationType {
     SpriteAndSpline
 }
 
+public enum SplineAlignAxisSetting
+{
+    NoChange,
+    PosX,
+    NegX,
+    PosY,
+    NegY,
+    PosZ,
+    NegZ
+}
+
+
 
 
 [System.Serializable]
 public struct SequencePart
 {
     public AnimationType AnimationTypes;
-    //public SpriteAnimationStart;
-    //SpriteParts to animate between
-    //...
 
-    //?   ---------AnimationState???------=--===
     public int animationState;
-    //SplineAnimate To Follow
-    //public  SplineAnimation;
 
+    //Spline To Follow
     public SplineAnimate.AlignmentMode alignmentMode;
-   // public SplineComponent.AlignAxis objectForwardAxis;
-   // public SplineComponent.AlignAxis objectUpAxis;
+    public SplineAlignAxisSetting objectForwardAxis;
+    public SplineAlignAxisSetting objectUpAxis;
     public float Duration;
     public SplineAnimate.EasingMode easingMode;
-   // public SplineAnimate.LoopMode loopMode;
     //public float maxSpeed;
     public SplineContainer spline;
 }
@@ -48,15 +54,12 @@ public class AnimationSequence : MonoBehaviour
     private int CurrentStep = 0;
     private SplineAnimate SplineAnimator;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
         CurrentStep = 0;
         SplineAnimator = GetComponent<SplineAnimate>();
-        //SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.ZAxis;
-        //SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeXAxis;
+
         //SplineAnimator.alignmentMode = SplineAnimate.AlignmentMode.SplineElement;
         SplineAnimator.playOnAwake = false;
         SplineAnimator.method = SplineAnimate.Method.Time;
@@ -95,6 +98,56 @@ public class AnimationSequence : MonoBehaviour
             case AnimationType.SplineOnly:
 
                 SplineAnimator.alignmentMode = Sequence[CurrentStep].alignmentMode;
+
+
+                switch (Sequence[CurrentStep].objectUpAxis)
+                {
+                    case SplineAlignAxisSetting.PosX:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.XAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegX:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeXAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosY:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.YAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegY:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeYAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosZ:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.ZAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegZ:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeZAxis;
+                        break;
+                    default:
+                        break;
+                }
+                switch (Sequence[CurrentStep].objectUpAxis)
+                {
+                    case SplineAlignAxisSetting.PosX:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.XAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegX:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeXAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosY:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.YAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegY:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeYAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosZ:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.ZAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegZ:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeZAxis;
+                        break;
+                    default:
+                        break;
+                }
+
+
                 SplineAnimator.duration = Sequence[CurrentStep].Duration;
                 SplineAnimator.easingMode = Sequence[CurrentStep].easingMode;
                 //SplineAnimator.maxSpeed = Sequence[CurrentStep].maxSpeed;
@@ -104,11 +157,58 @@ public class AnimationSequence : MonoBehaviour
 
                 break;
             case AnimationType.SpriteAndSpline:
-               // this.GetComponent<Animator>().SetTrigger(Sequence[CurrentStep].SpriteAnimationTrigger);
                 this.GetComponent<Animator>().SetInteger("AnimationState", Sequence[CurrentStep].animationState);
 
                 
                 SplineAnimator.alignmentMode = Sequence[CurrentStep].alignmentMode;
+
+                switch (Sequence[CurrentStep].objectUpAxis)
+                {
+                    case SplineAlignAxisSetting.PosX:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.XAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegX:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeXAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosY:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.YAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegY:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeYAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosZ:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.ZAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegZ:
+                        SplineAnimator.objectUpAxis = SplineComponent.AlignAxis.NegativeZAxis;
+                        break;
+                    default:
+                        break;
+                }
+                switch (Sequence[CurrentStep].objectUpAxis)
+                {
+                    case SplineAlignAxisSetting.PosX:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.XAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegX:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeXAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosY:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.YAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegY:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeYAxis;
+                        break;
+                    case SplineAlignAxisSetting.PosZ:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.ZAxis;
+                        break;
+                    case SplineAlignAxisSetting.NegZ:
+                        SplineAnimator.objectForwardAxis = SplineComponent.AlignAxis.NegativeZAxis;
+                        break;
+                    default:
+                        break;
+                }
+
                 SplineAnimator.duration = Sequence[CurrentStep].Duration;
                 SplineAnimator.easingMode = Sequence[CurrentStep].easingMode;
                 //SplineAnimator.maxSpeed = Sequence[CurrentStep].maxSpeed;
@@ -130,7 +230,6 @@ public class AnimationSequence : MonoBehaviour
         CurrentStep++;
         if (CurrentStep < Sequence.Length)
         {
-            
             StartCoroutine(Animate());
         }
         else
