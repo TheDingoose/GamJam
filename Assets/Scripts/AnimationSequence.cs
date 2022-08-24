@@ -48,6 +48,8 @@ public class AnimationSequence : MonoBehaviour
     private int CurrentStep = 0;
     private SplineAnimate SplineAnimator;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,12 @@ public class AnimationSequence : MonoBehaviour
             StartCoroutine(Animate());
         }
     }
+
+    public void Play()
+    {
+        StartCoroutine(Animate());
+    }
+
 
     // Update is called once per frame
     void Update()
