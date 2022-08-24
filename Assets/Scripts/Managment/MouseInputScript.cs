@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class MouseInputScript : MonoBehaviour
 {
+    PlayerMove playerMove;
+
+    void Start() {
+        playerMove = FindObjectOfType<PlayerMove>();
+    }
+
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             GameObject obj = GetObjectUnderMouse();
-            if (obj != null) obj.GetComponent<Clickable>().Click();
+            if (obj != null && obj.GetComponent<Clickable>() != null) {
+                Task t = new Task(playerMove.MoveTo(obj.transform.position));
+                t.Finished += delegate { obj.GetComponent<Clickable>().Click();};
+            }
         }
     }
 
