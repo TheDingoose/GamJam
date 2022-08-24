@@ -11,7 +11,7 @@ public class MouseInputScript : MonoBehaviour
         }
     }
 
-    GameObject GetObjectUnderMouse() {
+    public GameObject GetObjectUnderMouse() {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
